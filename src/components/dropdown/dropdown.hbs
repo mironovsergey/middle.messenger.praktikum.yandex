@@ -1,0 +1,15 @@
+<div class="dropdown {{#if active}}dropdown_active{{/if}}">
+    <button type="button" class="dropdown__toggle">
+        {{{icon}}}
+    </button>
+    <ul class="dropdown__menu {{#if top}}dropdown__menu_top{{/if}} {{#if right}}dropdown__menu_right{{/if}}">
+        {{#each items}}
+        <li class="dropdown__item">
+            <a class="dropdown__link" role="button">
+                {{#if icon}}<span class="dropdown__icon"><img src="{{{icon}}}" alt="" /></span>{{/if}}
+                {{#if text}}<span class="dropdown__text">{{text}}</span>{{/if}}
+            </a>
+        </li>
+        {{/each}}
+    </ul>
+</div>

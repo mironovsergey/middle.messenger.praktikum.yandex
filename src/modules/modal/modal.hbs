@@ -1,0 +1,20 @@
+<div class="modal">
+    <div class="modal__dialog">
+        <div class="modal__head">
+            <div class="modal__title">
+                {{title}}
+            </div>
+            <button type="button" class="modal__close">
+                {{{iconClose}}}
+            </button>
+        </div>
+
+        <div class="modal__body">
+            {{{body}}}
+        </div>
+
+        <div class="modal__foot">
+            {{#if text}}<div class="modal__text">{{{text}}}</div>{{/if}}
+        </div>
+    </div>
+</div>

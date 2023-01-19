@@ -1,0 +1,42 @@
+@use "sass:math";
+
+@import "../../../../scss/functions";
+@import "../../../../scss/mixins";
+
+.form-control {
+    font-size: rem(17px);
+    font-weight: 400;
+    line-height: math.div(22, 17);
+    letter-spacing: -0.0041em;
+    color: var(--black);
+    box-shadow: none;
+    background-clip: padding-box;
+    background-color: var(--lightgrey);
+    border: 1px solid var(--grey);
+    border-radius: 13px;
+    padding: 16px;
+    display: block;
+    width: 100%;
+    height: 56px;
+    appearance: none;
+    transition: border-color var(--duration);
+
+    &:disabled,
+    &[readonly] {
+        opacity: 1;
+    }
+
+    &:hover {
+        border-color: var(--darkgrey);
+    }
+
+    &:focus {
+        border-color: var(--blue);
+        outline: 0;
+    }
+
+    &.has-error {
+        border-color: var(--red);
+    }
+
+}
