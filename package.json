@@ -2,9 +2,8 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "scripts": {
-    "copy-static": "cp -vR ./static ./build",
-    "dev": "npm run copy-static && parcel src/index.html --dist-dir build --no-cache --port 3000",
-    "build": "npm run copy-static && parcel build src/index.html --dist-dir build --no-cache",
+    "dev": "parcel src/index.html --dist-dir build --no-cache --port 3000",
+    "build": "parcel build src/index.html --dist-dir build --no-cache",
     "start": "node server.js"
   },
   "targets": {
@@ -22,6 +21,7 @@
     "@parcel/transformer-inline-string": "^2.8.2",
     "@parcel/transformer-sass": "^2.8.2",
     "parcel": "^2.8.2",
+    "parcel-reporter-static-files-copy": "^1.5.0",
     "parcel-transformer-hbs": "^1.0.4"
   },
   "dependencies": {
