@@ -10,9 +10,9 @@ const text = `Уже есть аккаунт? <a href="/#sign-in">Войти</a>
 const body = form({
     fields: [
         {
-            type: 'email',
-            name: 'email',
-            label: 'Почта'
+            type: 'text',
+            name: 'display_name',
+            label: 'Имя в чате'
         },
         {
             type: 'text',
@@ -28,6 +28,11 @@ const body = form({
             type: 'text',
             name: 'second_name',
             label: 'Фамилия'
+        },
+        {
+            type: 'email',
+            name: 'email',
+            label: 'Почта'
         },
         {
             type: 'tel',

@@ -8,9 +8,11 @@ import {
 
 import home from './pages/home';
 import profile from './pages/profile';
+import editProfile from './pages/edit-profile';
+import changePassword from './pages/change-password';
 import signIn from './pages/sign-in';
 import signUp from './pages/sign-up';
-import notFound from './pages/not-found';
+import error from './pages/error';
 
 const root = document.getElementById('root');
 
@@ -58,6 +60,14 @@ template('profile', () => {
     root.innerHTML = profile({ user });
 });
 
+template('edit-profile', () => {
+    root.innerHTML = editProfile({ user });
+});
+
+template('change-password', () => {
+    root.innerHTML = changePassword();
+});
+
 template('sign-in', () => {
     root.innerHTML = signIn();
 });
@@ -66,12 +76,25 @@ template('sign-up', () => {
     root.innerHTML = signUp();
 });
 
-template('not-found', () => {
-    root.innerHTML = notFound();
+template('404', () => {
+    root.innerHTML = error({
+        title: '404',
+        description: 'Not Found'
+    });
+});
+
+template('500', () => {
+    root.innerHTML = error({
+        title: '500',
+        description: 'Internal Server Error'
+    });
 });
 
 route('/', 'home');
 route('/profile', 'profile');
+route('/edit-profile', 'edit-profile');
+route('/change-password', 'change-password');
 route('/sign-in', 'sign-in');
 route('/sign-up', 'sign-up');
-route('/not-found', 'not-found');
+route('/404', '404');
+route('/500', '500');

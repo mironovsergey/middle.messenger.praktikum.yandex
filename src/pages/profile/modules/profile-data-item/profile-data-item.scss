@@ -7,11 +7,11 @@
     &__outer {
         box-shadow: inset 0 -1px var(--grey);
         display: flex;
+        justify-content: space-between;
         align-items: center;
         position: relative;
         padding: 12px 0;
         user-select: none;
-        cursor: pointer;
     }
 
     &__title,
@@ -21,27 +21,7 @@
         line-height: math.div(20, 15);
     }
 
-    &__title {
-        margin-right: auto;
-    }
-
     &__value {
         color: var(--darkgrey);
-    }
-
-    &__icon {
-        margin-left: 4px;
-
-        svg {
-            display: block;
-            will-change: transform;
-            transition: transform var(--duration);
-        }
-    }
-
-    &__outer:hover &__icon {
-        svg {
-            transform: translateX(2px);
-        }
     }
 }

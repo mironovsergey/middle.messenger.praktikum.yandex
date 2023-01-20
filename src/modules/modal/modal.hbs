@@ -1,9 +1,9 @@
 <div class="modal">
     <div class="modal__dialog">
         <div class="modal__head">
-            <div class="modal__title">
+            <h1 class="modal__title">
                 {{title}}
-            </div>
+            </h1>
             <button type="button" class="modal__close">
                 {{{iconClose}}}
             </button>
@@ -14,7 +14,7 @@
         </div>
 
         <div class="modal__foot">
-            {{#if text}}<div class="modal__text">{{{text}}}</div>{{/if}}
+            {{#if text}}<div class="modal__text"><p>{{{text}}}</p></div>{{/if}}
         </div>
     </div>
 </div>

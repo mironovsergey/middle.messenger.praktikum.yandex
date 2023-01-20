@@ -2,7 +2,7 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "scripts": {
-    "dev": "parcel src/index.html --dist-dir build --no-cache --port 3000",
+    "dev": "parcel src/index.html --dist-dir build --no-cache --port 3000 --open",
     "build": "parcel build src/index.html --dist-dir build --no-cache",
     "start": "node server.js"
   },

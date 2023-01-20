@@ -8,9 +8,15 @@ import './profile-settings.scss';
 
 export default (user) => {
     return template({
-        profileName: user.find((item) => item.name === 'name').value,
+        profileName: user.find((item) => item.name === 'display_name').value,
         profileImage: profileImage(user.find((item) => item.name === 'avatar')),
-        editButton: button({
+        editProfileButton: button({
+            type: 'button',
+            mod: 'default',
+            size: 'small',
+            text: 'Редактировать профиль'
+        }),
+        changePasswordButton: button({
             type: 'button',
             mod: 'default',
             size: 'small',

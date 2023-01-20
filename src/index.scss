@@ -50,6 +50,17 @@ body,
     height: 100%;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-top: 0;
+    margin-bottom: rem(16px);
+}
+
 a {
     text-decoration: none;
     color: #007AFF;
@@ -121,6 +132,19 @@ a {
         -ms-overflow-style: -ms-autohiding-scrollbar;
     }
 
+    &-outer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100%;
+        padding: 56px 32px;
+    }
+
+    &-inner {
+        max-width: 384px;
+        width: 100%;
+    }
+
     &-title {
         font-size: rem(17px);
         font-weight: 600;
@@ -128,5 +152,6 @@ a {
         text-align: center;
         letter-spacing: -0.0041em;
         width: 100%;
+        margin-bottom: 0;
     }
 }

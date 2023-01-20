@@ -52,6 +52,7 @@
         font-weight: 600;
         line-height: math.div(28, 24);
         text-align: center;
+        margin-bottom: 0;
     }
 
     &__close {
@@ -86,5 +87,9 @@
         line-height: math.div(20, 15);
         text-align: center;
         color: var(--black);
+
+        >:last-child {
+            margin-bottom: 0;
+        }
     }
 }

@@ -81,7 +81,7 @@ export const user = [
         "value": "/images/noimage.jpg"
     },
     {
-        "name": "name",
+        "name": "display_name",
         "title": "Имя в чате",
         "value": "Иван"
     },
@@ -96,7 +96,7 @@ export const user = [
         "value": "Иван"
     },
     {
-        "name": "last_name",
+        "name": "second_name",
         "title": "Фамилия",
         "value": "Иванов"
     },
