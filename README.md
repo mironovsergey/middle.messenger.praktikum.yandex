@@ -30,7 +30,10 @@
 - [Авторизация](https://lambent-hotteok-03f506.netlify.app/#sign-in)
 - [Регистрация](https://lambent-hotteok-03f506.netlify.app/#sign-up)
 - [Профиль](https://lambent-hotteok-03f506.netlify.app/#profile)
-- [Ошибки 404/5**](https://lambent-hotteok-03f506.netlify.app/#not-found)
+- [Редактировать профиль](https://lambent-hotteok-03f506.netlify.app/#edit-profile)
+- [Изменить пароль](https://lambent-hotteok-03f506.netlify.app/#change-password)
+- [Ошибки 404](https://lambent-hotteok-03f506.netlify.app/#404)
+- [Ошибки 500](https://lambent-hotteok-03f506.netlify.app/#500)
 
 ## Pull requests
 
