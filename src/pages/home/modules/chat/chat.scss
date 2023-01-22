@@ -1,0 +1,23 @@
+@use "sass:math";
+
+@import "../../../../scss/functions";
+@import "../../../../scss/mixins";
+
+.chat {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+
+    &__image {
+        border-radius: 50%;
+        width: 48px;
+        @include img-lazy(100%);
+    }
+
+    &__name {
+        font-size: rem(17px);
+        font-weight: 600;
+        line-height: math.div(22, 17);
+        letter-spacing: -0.0041em;
+    }
+}

@@ -1,0 +1,47 @@
+@use "sass:math";
+
+@import "../../../../scss/functions";
+@import "../../../../scss/mixins";
+
+.profile-image {
+    input[type=file] {
+        display: none;
+    }
+
+    &-label {
+        display: block;
+        position: relative;
+    }
+
+    &-preview {
+        border-radius: 50%;
+        display: block;
+        @include img-lazy(100%);
+    }
+
+    &-hint {
+        font-size: 13px;
+        line-height: math.div(18, 13);
+        text-align: center;
+        letter-spacing: -0.0008em;
+        word-spacing: 8rem;
+        color: var(--white);
+        background-color: var(--black-75);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity var(--duration);
+    }
+
+    &-label:hover &-hint {
+        opacity: 1;
+    }
+}

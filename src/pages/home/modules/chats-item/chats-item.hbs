@@ -1,0 +1,17 @@
+<div class="chats-item {{#if active}}chats-item_state_active{{/if}}">
+    <div class="chats-item__outer">
+        <div class="chats-item__side">
+            <div class="chats-item__image"><img src="{{image}}" alt="{{name}}" /></div>
+        </div>
+        <div class="chats-item__inner">
+            <div class="chats-item__head">
+                <div class="chats-item__name">{{name}}</div>
+                <div class="chats-item__time">{{time}}</div>
+            </div>
+            <div class="chats-item__body">
+                <div class="chats-item__text">{{{text}}}</div>
+                {{#if count}}<div class="chats-item__badge">{{count}}</div>{{/if}}
+            </div>
+        </div>
+    </div>
+</div>

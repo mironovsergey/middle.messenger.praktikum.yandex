@@ -1,0 +1,26 @@
+.search {
+    position: relative;
+    flex-grow: 1;
+
+    &-form {
+        width: 100%;
+    }
+
+    &-icon {
+        pointer-events: none;
+        position: absolute;
+        top: 12px;
+        left: 12px;
+
+        svg {
+            display: block;
+        }
+    }
+
+    .form-control {
+        height: 48px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 42px;
+    }
+}

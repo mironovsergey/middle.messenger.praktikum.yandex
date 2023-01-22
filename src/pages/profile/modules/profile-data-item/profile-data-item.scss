@@ -1,0 +1,27 @@
+@use "sass:math";
+
+@import "../../../../scss/functions";
+@import "../../../../scss/mixins";
+
+.profile-data-item {
+    &__outer {
+        box-shadow: inset 0 -1px var(--grey);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        padding: 12px 0;
+        user-select: none;
+    }
+
+    &__title,
+    &__value {
+        font-size: rem(15px);
+        font-weight: 500;
+        line-height: math.div(20, 15);
+    }
+
+    &__value {
+        color: var(--darkgrey);
+    }
+}
