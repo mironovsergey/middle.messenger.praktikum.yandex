@@ -1,0 +1,28 @@
+{
+  "extends": "airbnb-base",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "indent": ["error", 4],
+    "comma-dangle": ["error", "never"],
+    "lines-between-class-members": "off",
+    "prefer-promise-reject-errors": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "import/order": "off",
+    "no-shadow": "off",
+    "no-undef": "off",
+    "arrow-body-style": "off",
+    "no-return-assign": "off",
+    "consistent-return": "off",
+    "no-useless-constructor": "off",
+    "padded-blocks": "off",
+    "no-restricted-syntax": "off",
+    "no-unused-vars": "off",
+    "class-methods-use-this": "off",
+    "no-underscore-dangle": "off",
+    "no-param-reassign": "off",
+    "no-use-before-define": "off",
+    "no-nested-ternary": "off"
+  }
+}

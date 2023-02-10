@@ -10,16 +10,16 @@
 
     &::before {
         content: "";
-        background-color: rgba(0, 0, 0, 0);
+        background-color: rgba(0, 0, 0, 0%);
         display: block;
         width: 100%;
         padding-top: $height;
     }
 
     img {
-        @include img-cover;
         position: absolute;
         top: 0;
         left: 0;
+        @include img-cover;
     }
 }

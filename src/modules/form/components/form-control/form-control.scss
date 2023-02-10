@@ -1,5 +1,4 @@
 @use "sass:math";
-
 @import "../../../../scss/functions";
 @import "../../../../scss/mixins";
 
@@ -38,5 +37,4 @@
     &.has-error {
         border-color: var(--red);
     }
-
 }

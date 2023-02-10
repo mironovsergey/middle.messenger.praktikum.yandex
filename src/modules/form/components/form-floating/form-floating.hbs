@@ -1,5 +1,5 @@
 <div class="form-floating">
     {{{control}}}
     <label>{{label}}</label>
-    {{#if error}}<div class="form-error">{{error}}</div>{{/if}}
+    {{#each errors}}<div class="form-error">{{this}}</div>{{/each}}
 </div>
