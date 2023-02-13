@@ -1,5 +1,4 @@
 @use "sass:math";
-
 @import "../../../../scss/functions";
 @import "../../../../scss/mixins";
 
@@ -65,7 +64,7 @@
 
         &::before {
             content: "\0021";
-            font-family: Arial;
+            font-family: var(--font-arial);
             font-size: rem(11px);
             font-weight: 600;
             line-height: math.div(15, 11);

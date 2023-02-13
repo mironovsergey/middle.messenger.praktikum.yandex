@@ -1,0 +1,15 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "indentation": 4,
+    "color-hex-case": "upper",
+    "selector-not-notation": null,
+    "color-function-notation": null,
+    "selector-combinator-space-before": null,
+    "selector-combinator-space-after": null,
+    "shorthand-property-no-redundant-values": null,
+    "at-rule-empty-line-before": null,
+    "property-no-vendor-prefix": null,
+    "import-notation": null
+  }
+}

@@ -1,5 +1,4 @@
 @use "sass:math";
-
 @import "../../../../scss/functions";
 @import "../../../../scss/mixins";
 
@@ -9,13 +8,5 @@
         flex-direction: column;
         row-gap: 16px;
         padding: 20px 0;
-    }
-
-    &-date {
-        font-size: rem(13px);
-        line-height: math.div(18, 13);
-        text-align: center;
-        letter-spacing: -0.0008em;
-        color: var(--darkgrey);
     }
 }

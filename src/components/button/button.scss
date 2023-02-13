@@ -1,5 +1,4 @@
 @use "sass:math";
-
 @import "../../scss/functions";
 @import "../../scss/mixins";
 
@@ -22,8 +21,7 @@
     border: 1px solid transparent;
     border-radius: 13px;
     padding: 15px;
-    transition: background-color var(--duration),
-        border-color var(--duration);
+    transition: background-color var(--duration), border-color var(--duration);
 
     &:focus {
         box-shadow: none;
@@ -42,6 +40,10 @@
     &_type {
         &_default {
             border: 1px solid var(--grey);
+
+            &:hover {
+                border-color: var(--darkgrey);
+            }
         }
 
         &_primary {
@@ -56,11 +58,18 @@
         &_danger {
             color: var(--white);
             background-color: var(--red);
+
+            &:hover {
+                background-color: var(--darkred);
+            }
         }
 
         &_link {
-            border: 0;
-            padding: 0;
+            padding: 11px;
+
+            &:hover {
+                background-color: var(--grey);
+            }
         }
     }
 
