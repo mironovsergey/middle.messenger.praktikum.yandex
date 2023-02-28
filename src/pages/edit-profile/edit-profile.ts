@@ -2,7 +2,7 @@ import type { TBlockProps } from '../../services/block';
 import Block from '../../services/block';
 import Form from '../../modules/form';
 import Button from '../../components/button';
-import { getFormData } from '../../utils/helpers';
+import { getFormData } from '../../utils';
 
 import template from './edit-profile.hbs';
 

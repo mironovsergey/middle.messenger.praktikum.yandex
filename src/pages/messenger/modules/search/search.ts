@@ -1,7 +1,7 @@
 import type { TBlockProps } from '../../../../services/block';
 import Block from '../../../../services/block';
 import FormControl from '../../../../modules/form/components/form-control';
-import { getFormData } from '../../../../utils/helpers';
+import { getFormData } from '../../../../utils';
 
 import template from './search.hbs';
 

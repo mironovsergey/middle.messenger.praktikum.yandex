@@ -1,7 +1,7 @@
 import type { TMessage } from '../../../../utils/types';
 import type { TBlockProps } from '../../../../services/block';
 import Block from '../../../../services/block';
-import { formatDate } from '../../../../utils/helpers';
+import { formatDate } from '../../../../utils';
 import MessagesItem from '../messages-item';
 import MessagesDate from '../messages-date';
 

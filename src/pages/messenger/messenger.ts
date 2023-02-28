@@ -1,4 +1,3 @@
-import type { TChat, TMessage } from '../../utils/types';
 import type { TBlockProps } from '../../services/block';
 import Block from '../../services/block';
 import Dropdown from '../../components/dropdown';
@@ -7,14 +6,16 @@ import Message from './modules/message';
 import Chats from './modules/chats';
 import Messages from './modules/messages';
 import Search from './modules/search';
-import { getFormData } from '../../utils/helpers';
+import { getFormData } from '../../utils';
 
-import template from './home.hbs';
+import template from './messenger.hbs';
 
 import iconBars from 'bundle-text:../../../static/images/icons/bars.svg';
 import iconDots from 'bundle-text:../../../static/images/icons/dots.svg';
 
-type THome = {
+import { chats as chatsData, messages as messagesData } from '../../utils/data';
+
+type TMessenger = {
     chat: Chat;
     message: Message;
     search: Search;
@@ -24,14 +25,9 @@ type THome = {
     chatDropdown: Dropdown;
 } & TBlockProps;
 
-type THomeProps = {
-    chatsData: TChat[];
-    messagesData: TMessage[];
-} & TBlockProps;
+export default class messenger extends Block<TMessenger> {
 
-export default class Home extends Block<THome> {
-
-    constructor({ chatsData, messagesData, ...props }: THomeProps) {
+    constructor(props = {}) {
         super({
             ...props,
             chat: new Chat(chatsData[3]),

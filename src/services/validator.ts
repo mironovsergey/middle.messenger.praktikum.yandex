@@ -1,6 +1,6 @@
 import EventBus from './event-bus';
 import Block from './block';
-import { pickProps } from '../utils/helpers';
+import { pickProps } from '../utils';
 
 interface IValidatorHTMLFormElement extends HTMLFormElement {
     isValid?: Function;

@@ -1,4 +1,3 @@
-import type { TUser } from '../../utils/types';
 import type { TBlockProps } from '../../services/block';
 import Block from '../../services/block';
 import Button from '../../components/button';
@@ -12,6 +11,8 @@ import './profile.scss';
 
 import iconBack from 'bundle-text:../../../static/images/icons/back.svg';
 
+import { user as userData } from '../../utils/data';
+
 type TProfile = {
     title: string;
     backButton: Button;
@@ -19,13 +20,9 @@ type TProfile = {
     profileData: ProfileData;
 } & TBlockProps;
 
-type TProfileProps = {
-    userData: TUser;
-} & TBlockProps;
-
 export default class Profile extends Block<TProfile> {
 
-    constructor({ userData, ...props }: TProfileProps) {
+    constructor(props = {}) {
         super({
             ...props,
             title: 'Мой профиль',

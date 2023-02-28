@@ -3,7 +3,7 @@ import Block from '../../services/block';
 import Backdrop from '../../modules/backdrop';
 import Modal from '../../modules/modal';
 import Form from '../../modules/form';
-import { getFormData } from '../../utils/helpers';
+import { getFormData } from '../../utils';
 
 import template from './sign-in.hbs';
 

@@ -1,7 +1,7 @@
 import type { TChat } from '../../../../utils/types';
 import type { TBlockProps } from '../../../../services/block';
 import Block from '../../../../services/block';
-import { diffDays, declension } from '../../../../utils/helpers';
+import { diffDays, declension } from '../../../../utils';
 
 import template from './chats-item.hbs';
 
