@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "parcel src/index.html --dist-dir build --no-cache --port 3000 --open",
     "build": "parcel build src/index.html --dist-dir build --no-cache",
-    "start": "node server.js"
+    "start": "npm run build && node server.js"
   },
   "targets": {
     "default": {
