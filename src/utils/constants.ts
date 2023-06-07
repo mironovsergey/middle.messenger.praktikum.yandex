@@ -8,6 +8,5 @@ export enum RoutePaths {
     EditProfile = '/edit-profile',
     ChangePassword = '/change-password',
     Messenger = '/messenger',
-    Error404 = '/404',
-    Error500 = '/500'
+    Error404 = '/404'
 }

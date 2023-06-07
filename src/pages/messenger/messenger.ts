@@ -164,7 +164,50 @@ export default class Messenger extends Block<TMessenger> {
             ...props,
             search: new Search(),
             messengerSide: new MessengerSideWithChats({}),
-            messengerHead: new MessengerHeadWithChat({}),
+            messengerHead: new MessengerHeadWithChat({
+                chatDropdown: new Dropdown({
+                    icon: iconDots,
+                    right: true,
+                    items: [
+                        {
+                            icon: '/images/icons/plus.svg',
+                            text: 'Добавить пользователя',
+                            events: {
+                                click: (event: Event) => {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+
+                                    this.setProps({
+                                        userAddForm: userAddForm(() => {
+                                            this.setProps({
+                                                userAddForm: undefined
+                                            });
+                                        })
+                                    });
+                                }
+                            }
+                        },
+                        {
+                            icon: '/images/icons/xmark.svg',
+                            text: 'Удалить пользователя',
+                            events: {
+                                click: (event: Event) => {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+
+                                    this.setProps({
+                                        userDeleteForm: userDeleteForm(() => {
+                                            this.setProps({
+                                                userDeleteForm: undefined
+                                            });
+                                        })
+                                    });
+                                }
+                            }
+                        }
+                    ]
+                })
+            }),
             messengerBody: new MessengerBodyWithChat({}),
             messengerFoot: new MessengerFootWithChat({}),
             profileDropdown: new Dropdown({
@@ -212,42 +255,6 @@ export default class Messenger extends Block<TMessenger> {
                                     chatAddForm: chatAddForm(() => {
                                         this.setProps({
                                             chatAddForm: undefined
-                                        });
-                                    })
-                                });
-                            }
-                        }
-                    },
-                    {
-                        icon: '/images/icons/plus.svg',
-                        text: 'Добавить пользователя',
-                        events: {
-                            click: (event: Event) => {
-                                event.preventDefault();
-                                event.stopPropagation();
-
-                                this.setProps({
-                                    userAddForm: userAddForm(() => {
-                                        this.setProps({
-                                            userAddForm: undefined
-                                        });
-                                    })
-                                });
-                            }
-                        }
-                    },
-                    {
-                        icon: '/images/icons/xmark.svg',
-                        text: 'Удалить пользователя',
-                        events: {
-                            click: (event: Event) => {
-                                event.preventDefault();
-                                event.stopPropagation();
-
-                                this.setProps({
-                                    userDeleteForm: userDeleteForm(() => {
-                                        this.setProps({
-                                            userDeleteForm: undefined
                                         });
                                     })
                                 });

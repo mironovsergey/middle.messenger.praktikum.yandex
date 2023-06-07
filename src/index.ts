@@ -23,9 +23,5 @@ router
     .use(RoutePaths.Error404, NotFound, {
         title: '404',
         description: 'Not Found'
-    })
-    .use(RoutePaths.Error500, NotFound, {
-        title: '500',
-        description: 'Internal Server Error'
-    })
+    }, true)
     .start();

@@ -9,6 +9,7 @@ export default class Router {
     private _rootQuery: string;
     private _currentRoute: Route | null;
     private _routes: Route[];
+    private _notFoundRoute: Route | null = null;
 
     get history() {
         return window.history;
@@ -31,11 +32,16 @@ export default class Router {
     public use<TProps extends TRouteProps = {}>(
         pathname: string,
         blockClass: TBlockClass<TProps>,
-        props: TProps
+        props: TProps,
+        isNotFoundRoute: boolean = false
     ): Router {
         const route = new Route(pathname, blockClass, { ...props, rootQuery: this._rootQuery });
 
-        this._routes.push(route);
+        if (isNotFoundRoute) {
+            this._notFoundRoute = route;
+        } else {
+            this._routes.push(route);
+        }
 
         return this;
     }
@@ -59,6 +65,7 @@ export default class Router {
         const route = this._getRoute(pathname);
 
         if (!route) {
+            this._handleNotFound();
             return;
         }
 
@@ -69,6 +76,17 @@ export default class Router {
         this._currentRoute = route;
 
         route.render();
+    }
+
+    private _handleNotFound() {
+        if (this._notFoundRoute) {
+            if (this._currentRoute && this._currentRoute !== this._notFoundRoute) {
+                this._currentRoute.leave();
+            }
+
+            this._currentRoute = this._notFoundRoute;
+            this._notFoundRoute.render();
+        }
     }
 
     public go(pathname: string): void {
