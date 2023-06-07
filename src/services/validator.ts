@@ -2,8 +2,8 @@ import EventBus from './event-bus';
 import Block from './block';
 import { pickProps } from '../utils';
 
-interface IValidatorHTMLFormElement extends HTMLFormElement {
-    isValid?: Function;
+export interface IHTMLFormElementWithValidator extends HTMLFormElement {
+    isValid?: () => boolean;
 }
 
 export default class Validator {
@@ -25,7 +25,7 @@ export default class Validator {
     constructor(form: Block) {
         this.form = form;
 
-        const element: IValidatorHTMLFormElement = this.form.getElement() as HTMLFormElement;
+        const element: IHTMLFormElementWithValidator = this.form.getElement() as HTMLFormElement;
 
         element.isValid = this.isValid;
 

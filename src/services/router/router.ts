@@ -20,7 +20,7 @@ export default class Router {
         this._routes = [];
     }
 
-    public static getInstance(rootQuery: string): Router {
+    public static getInstance(rootQuery: string = '#root'): Router {
         if (!Router._instance) {
             Router._instance = new Router(rootQuery);
         }

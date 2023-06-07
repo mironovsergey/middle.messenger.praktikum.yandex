@@ -1,3 +1,6 @@
+import type { Indexed } from '../utils/types';
+import { queryStringify } from '../utils';
+
 enum METHODS {
     GET = 'GET',
     PUT = 'PUT',
@@ -6,38 +9,37 @@ enum METHODS {
 }
 
 type TOptions = {
-    headers?: Record<string, string>;
-    data?: XMLHttpRequestBodyInit;
+    headers?: Indexed<string>;
+    data?: Indexed | XMLHttpRequestBodyInit;
     method?: METHODS;
     timeout?: number;
 };
 
-function queryStringify(data: XMLHttpRequestBodyInit): string {
-    if (typeof data !== 'object') {
-        throw new Error('Error data');
-    }
+type TMethod = (url: string, options?: TOptions) => Promise<XMLHttpRequest>;
 
-    return Object.entries(data).map(([key, value]) => `${key}=${value}`).join('&');
-}
+export default class HTTPTransport {
 
-class HTTPTransport {
-    get = (url: string, options: TOptions = {}) => {
-        return this.request(url, { ...options, method: METHODS.GET }, options.timeout);
-    };
+    public static get: TMethod = (url, options = {}) => (
+        HTTPTransport.request(url, { ...options, method: METHODS.GET }, options.timeout)
+    );
 
-    put = (url: string, options: TOptions = {}) => {
-        return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
-    };
+    public static put: TMethod = (url, options = {}) => (
+        HTTPTransport.request(url, { ...options, method: METHODS.PUT }, options.timeout)
+    );
 
-    post = (url: string, options: TOptions = {}) => {
-        return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
-    };
+    public static post: TMethod = (url, options = {}) => (
+        HTTPTransport.request(url, { ...options, method: METHODS.POST }, options.timeout)
+    );
 
-    delete = (url: string, options: TOptions = {}) => {
-        return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
-    };
+    public static delete: TMethod = (url, options = {}) => (
+        HTTPTransport.request(url, { ...options, method: METHODS.DELETE }, options.timeout)
+    );
 
-    request = (url: string, options: TOptions, timeout: number = 5000): Promise<XMLHttpRequest> => {
+    public static request = (
+        url: string,
+        options: TOptions,
+        timeout: number = 5000
+    ): Promise<XMLHttpRequest> => {
         const { headers = {}, data, method } = options;
 
         return new Promise((resolve, reject) => {
@@ -52,9 +54,12 @@ class HTTPTransport {
             xhr.open(
                 method,
                 (isGet && !!data)
-                    ? `${url}?${queryStringify(data)}`
+                    ? `${url}?${queryStringify(data as Indexed)}`
                     : url
             );
+
+            // Установить куки
+            xhr.withCredentials = true;
 
             // Таймаут
             xhr.timeout = timeout;
@@ -75,8 +80,24 @@ class HTTPTransport {
             if (isGet || !data) {
                 xhr.send();
             } else {
-                xhr.send(data);
+                xhr.send(data as XMLHttpRequestBodyInit);
             }
         });
     };
+
+    public static checkResponse = <T>(response: XMLHttpRequest): Promise<T> => {
+        return new Promise((resolve, reject) => {
+            if (response.status === 200) {
+                try {
+                    const responseData = JSON.parse(response.responseText) as T;
+                    resolve(responseData);
+                } catch (error) {
+                    reject(new Error(`Некорректный ответ сервера: ${error.message}`));
+                }
+            } else {
+                reject(new Error(`Ошибка HTTP ${response.status}`));
+            }
+        });
+    };
+
 }

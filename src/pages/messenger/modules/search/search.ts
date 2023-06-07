@@ -1,7 +1,7 @@
 import type { TBlockProps } from '../../../../services/block';
+import ChatsController from '../../../../controllers/chats-controller';
 import Block from '../../../../services/block';
 import FormControl from '../../../../modules/form/components/form-control';
-import { getFormData } from '../../../../utils';
 
 import template from './search.hbs';
 
@@ -23,16 +23,15 @@ export default class Search extends Block<TSearch> {
             control: new FormControl({
                 type: 'search',
                 name: 'search',
-                label: 'Поиск'
-            }),
-            events: {
-                submit: (event: SubmitEvent) => {
-                    event.preventDefault();
-                    event.stopPropagation();
+                label: 'Поиск',
+                events: {
+                    input: (event: Event) => {
+                        const { value } = event.target as HTMLInputElement;
 
-                    console.log(getFormData(event.target as HTMLFormElement));
+                        ChatsController.getChats(value ? { title: value } : undefined);
+                    }
                 }
-            }
+            })
         });
     }
 

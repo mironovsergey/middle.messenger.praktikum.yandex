@@ -1,3 +1,4 @@
 import Messenger from './messenger';
+import { requireAuth } from '../../services/auth';
 
-export default Messenger;
+export default requireAuth(Messenger);

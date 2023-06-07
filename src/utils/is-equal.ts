@@ -1,8 +1,6 @@
-type PlainObject<T = any> = {
-    [key in string]: T;
-};
+import type { Indexed } from './types';
 
-const isEqual = (lhs: PlainObject, rhs: PlainObject): boolean => {
+const isEqual = (lhs: Indexed, rhs: Indexed): boolean => {
     // Если оба объекта ссылаются на один и тот же адрес в памяти,
     // то они эквивалентны
     if (lhs === rhs) {

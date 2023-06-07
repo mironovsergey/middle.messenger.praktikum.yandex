@@ -47,6 +47,11 @@
 
     &__body {
         margin-top: 2px;
+
+        .button {
+            padding: 0;
+            align-self: flex-end;
+        }
     }
 
     &__name {
@@ -66,6 +71,7 @@
     }
 
     &__text {
+        flex-grow: 1;
         font-size: rem(13px);
         line-height: math.div(18, 13);
         letter-spacing: -0.0008em;
@@ -105,5 +111,17 @@
     &_state_active &__time,
     &_state_active &__text {
         color: var(--white);
+    }
+
+    &_state_active &__body {
+        .button {
+            svg {
+
+                path,
+                circle {
+                    stroke: var(--white);
+                }
+            }
+        }
     }
 }

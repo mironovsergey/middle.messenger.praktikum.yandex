@@ -5,3 +5,5 @@ export { default as getFormData } from './get-form-data';
 export { default as deepCompare } from './deep-compare';
 export { default as pickProps } from './pick-props';
 export { default as isEqual } from './is-equal';
+export { default as set } from './set';
+export { default as queryStringify } from './query-stringify';

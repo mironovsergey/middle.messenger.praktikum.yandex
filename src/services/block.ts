@@ -93,7 +93,7 @@ export default class Block<TProps extends TBlockProps = {}> {
         });
     }
 
-    getChildsAndProps(childsAndProps: TProps) {
+    getChildsAndProps(childsAndProps: Record<string, any>) {
         const childs: TChilds = {};
         const props: Record<string, any> = {};
 
@@ -191,7 +191,7 @@ export default class Block<TProps extends TBlockProps = {}> {
         return true;
     }
 
-    setProps(newProps: TProps) {
+    setProps(newProps: Record<string, any>) {
         if (!newProps) {
             return;
         }
@@ -205,6 +205,16 @@ export default class Block<TProps extends TBlockProps = {}> {
         if (Object.values(childs).length) {
             Object.assign(this._childs, childs);
         }
+
+        // Удаление ключей со значением undefined из _childs
+        Object.keys(newProps).forEach((key) => {
+            if (
+                Object.prototype.hasOwnProperty.call(this._childs, key)
+                && newProps[key] === undefined
+            ) {
+                delete this._childs[key];
+            }
+        });
 
         if (Object.values(props).length) {
             Object.assign(this._props, props);
@@ -229,6 +239,15 @@ export default class Block<TProps extends TBlockProps = {}> {
             set: (target, prop, value) => {
                 if (target[prop] !== value) {
                     target[prop] = value;
+                    this._setUpdate = true;
+                }
+
+                return true;
+            },
+
+            deleteProperty: (target, prop) => {
+                if (prop in target) {
+                    delete target[prop];
                     this._setUpdate = true;
                 }
 

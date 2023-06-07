@@ -10,15 +10,15 @@ type TChats = {
 } & TBlockProps;
 
 type TChatsProps = {
-    chatsData: TChat[]
-} & TBlockProps;
+    chats: TChat[]
+};
 
 export default class Chats extends Block<TChats> {
 
-    constructor({ chatsData, ...props }: TChatsProps) {
+    constructor({ chats, ...props }: TChatsProps) {
         super({
             ...props,
-            chatList: chatsData.map((item: TChat) => new ChatsItem(item))
+            chatList: chats.map((item: TChat) => new ChatsItem(item))
         });
     }
 

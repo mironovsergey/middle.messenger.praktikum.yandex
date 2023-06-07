@@ -31,6 +31,14 @@
         border-radius: 29px 29px 0 29px;
     }
 
+    &__name {
+        font-size: rem(13px);
+        line-height: math.div(18, 13);
+        letter-spacing: -0.0008em;
+        color: var(--darkgrey);
+        margin-bottom: 4px;
+    }
+
     &__text {
         font-size: rem(13px);
         line-height: math.div(18, 13);
@@ -42,16 +50,6 @@
 
     &_self &__text {
         color: var(--white);
-    }
-
-    &__image {
-        max-width: 200px;
-
-        img {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
     }
 
     &__meta {

@@ -1,17 +1,23 @@
-import type { TChat as TChatData } from '../../../../utils/types';
+import type { TChat } from '../../../../utils/types';
 import type { TBlockProps } from '../../../../services/block';
+import { API_URL } from '../../../../utils/constants';
 import Block from '../../../../services/block';
 
 import template from './chat.hbs';
 
 import './chat.scss';
 
-type TChat = TChatData & TBlockProps;
+export default class Chat extends Block<TChat & TBlockProps> {
 
-export default class Chat extends Block<TChat> {
+    constructor({ avatar, ...props }: TChat) {
+        avatar = avatar
+            ? `${API_URL}/resources${avatar}`
+            : '/images/noimage.jpg';
 
-    constructor(props: TChat) {
-        super(props);
+        super({
+            ...props,
+            avatar
+        });
     }
 
     render() {

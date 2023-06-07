@@ -1,75 +1,258 @@
+import type { TChat } from '../../utils/types';
 import type { TBlockProps } from '../../services/block';
+import AuthController from '../../controllers/auth-controller';
+import ChatsController from '../../controllers/chats-controller';
+import MessagesController from '../../controllers/messages-controller';
 import Block from '../../services/block';
+import MessengerSideWithChats, { MessengerSide } from './modules/messenger-side';
+import MessengerHeadWithChat, { MessengerHead } from './modules/messenger-head';
+import MessengerBodyWithChat, { MessengerBody } from './modules/messenger-body';
+import MessengerFootWithChat, { MessengerFoot } from './modules/messenger-foot';
+import Modal from '../../modules/modal';
+import Form from '../../modules/form';
 import Dropdown from '../../components/dropdown';
-import Chat from './modules/chat/chat';
-import Message from './modules/message';
-import Chats from './modules/chats';
-import Messages from './modules/messages';
 import Search from './modules/search';
+import Store, { StoreEvents } from '../../services/store';
 import { getFormData } from '../../utils';
+import { RoutePaths } from '../../utils/constants';
+import Router from '../../services/router';
 
 import template from './messenger.hbs';
 
 import iconBars from 'bundle-text:../../../static/images/icons/bars.svg';
 import iconDots from 'bundle-text:../../../static/images/icons/dots.svg';
 
-import { chats as chatsData, messages as messagesData } from '../../utils/data';
-
 type TMessenger = {
-    chat: Chat;
-    message: Message;
-    search: Search;
-    chats: Chats;
-    messages: Messages;
-    profileDropdown: Dropdown;
-    chatDropdown: Dropdown;
+    search?: Search;
+    messengerSide?: MessengerSide;
+    messengerHead?: MessengerHead;
+    messengerBody?: MessengerBody;
+    messengerFoot?: MessengerFoot;
+    profileDropdown?: Dropdown;
+    chatDropdown?: Dropdown;
+    chatAddForm?: Block;
+    userAddForm?: Block;
+    userDeleteForm?: Block;
 } & TBlockProps;
 
-export default class messenger extends Block<TMessenger> {
+const chatAddForm = (onClose: () => void): Modal => {
+    return new Modal({
+        title: 'Создать чат',
+        body: new Form({
+            fields: [
+                {
+                    type: 'text',
+                    name: 'title',
+                    label: 'Наименование',
+                    rules: ['required']
+                }
+            ],
+            button: {
+                type: 'submit',
+                mod: 'primary',
+                text: 'Создать'
+            },
+            events: {
+                submit: (event: SubmitEvent) => {
+                    event.preventDefault();
+
+                    const target = event.target as HTMLFormElement & {
+                        isValid?: () => boolean
+                    };
+
+                    if (typeof target.isValid === 'function' && target.isValid()) {
+                        const formData = getFormData(target as HTMLFormElement);
+
+                        ChatsController.createChats(formData as { title: string; });
+                        onClose();
+                    }
+                }
+            }
+        }),
+        events: {
+            onClose
+        }
+    });
+};
+
+const userAddForm = (onClose: () => void): Modal => {
+    return new Modal({
+        title: 'Добавить пользователя',
+        body: new Form({
+            fields: [
+                {
+                    type: 'text',
+                    name: 'login',
+                    label: 'Логин',
+                    rules: ['required']
+                }
+            ],
+            button: {
+                type: 'submit',
+                mod: 'primary',
+                text: 'Добавить'
+            },
+            events: {
+                submit: (event: SubmitEvent) => {
+                    event.preventDefault();
+
+                    const target = event.target as HTMLFormElement & {
+                        isValid?: () => boolean
+                    };
+
+                    if (typeof target.isValid === 'function' && target.isValid()) {
+                        const formData = getFormData(target as HTMLFormElement);
+
+                        ChatsController.addUsers(formData as { login: string; });
+                        onClose();
+                    }
+                }
+            }
+        }),
+        events: {
+            onClose
+        }
+    });
+};
+
+const userDeleteForm = (onClose: () => void): Modal => {
+    return new Modal({
+        title: 'Удалить пользователя',
+        body: new Form({
+            fields: [
+                {
+                    type: 'text',
+                    name: 'login',
+                    label: 'Логин',
+                    rules: ['required']
+                }
+            ],
+            button: {
+                type: 'submit',
+                mod: 'primary',
+                text: 'Удалить'
+            },
+            events: {
+                submit: (event: SubmitEvent) => {
+                    event.preventDefault();
+
+                    const target = event.target as HTMLFormElement & {
+                        isValid?: () => boolean
+                    };
+
+                    if (typeof target.isValid === 'function' && target.isValid()) {
+                        const formData = getFormData(target as HTMLFormElement);
+
+                        ChatsController.deleteUsers(formData as { login: string; });
+                        onClose();
+                    }
+                }
+            }
+        }),
+        events: {
+            onClose
+        }
+    });
+};
+
+export default class Messenger extends Block<TMessenger> {
+
+    private currentChat: TChat | null = null;
 
     constructor(props = {}) {
         super({
             ...props,
-            chat: new Chat(chatsData[3]),
-            message: new Message({
-                events: {
-                    submit: (event: SubmitEvent) => {
-                        event.preventDefault();
-                        event.stopPropagation();
-
-                        console.log(getFormData(event.target as HTMLFormElement));
-                    }
-                }
-            }),
             search: new Search(),
-            chats: new Chats({ chatsData }),
-            messages: new Messages({ messagesData }),
+            messengerSide: new MessengerSideWithChats({}),
+            messengerHead: new MessengerHeadWithChat({}),
+            messengerBody: new MessengerBodyWithChat({}),
+            messengerFoot: new MessengerFootWithChat({}),
             profileDropdown: new Dropdown({
                 icon: iconBars,
-                active: true,
                 items: [
                     {
                         icon: '/images/icons/user.svg',
-                        text: 'Профиль'
+                        text: 'Профиль',
+                        events: {
+                            click: (event: SubmitEvent) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+
+                                Router.getInstance().go(RoutePaths.Profile);
+                            }
+                        }
                     },
                     {
                         icon: '/images/icons/exit.svg',
-                        text: 'Выйти'
+                        text: 'Выйти',
+                        events: {
+                            click: (event: SubmitEvent) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+
+                                AuthController.logout();
+                            }
+                        }
                     }
                 ]
             }),
             chatDropdown: new Dropdown({
                 icon: iconDots,
-                active: true,
                 right: true,
                 items: [
                     {
                         icon: '/images/icons/plus.svg',
-                        text: 'Добавить пользователя'
+                        text: 'Создать чат',
+                        events: {
+                            click: (event: Event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+
+                                this.setProps({
+                                    chatAddForm: chatAddForm(() => {
+                                        this.setProps({
+                                            chatAddForm: undefined
+                                        });
+                                    })
+                                });
+                            }
+                        }
+                    },
+                    {
+                        icon: '/images/icons/plus.svg',
+                        text: 'Добавить пользователя',
+                        events: {
+                            click: (event: Event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+
+                                this.setProps({
+                                    userAddForm: userAddForm(() => {
+                                        this.setProps({
+                                            userAddForm: undefined
+                                        });
+                                    })
+                                });
+                            }
+                        }
                     },
                     {
                         icon: '/images/icons/xmark.svg',
-                        text: 'Удалить пользователя'
+                        text: 'Удалить пользователя',
+                        events: {
+                            click: (event: Event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+
+                                this.setProps({
+                                    userDeleteForm: userDeleteForm(() => {
+                                        this.setProps({
+                                            userDeleteForm: undefined
+                                        });
+                                    })
+                                });
+                            }
+                        }
                     }
                 ]
             })
@@ -78,6 +261,26 @@ export default class messenger extends Block<TMessenger> {
 
     render() {
         return this.compile(template);
+    }
+
+    componentDidMount() {
+        ChatsController.getChats();
+        Store.getInstance().set('chat', undefined);
+        Store.getInstance().set('users', undefined);
+
+        Store.getInstance().on(StoreEvents.Updated, () => {
+            const store = Store.getInstance().getState();
+            const { chat }: { chat?: TChat; } = store;
+
+            if (chat) {
+                if (this.currentChat && this.currentChat.id === chat.id) {
+                    return;
+                }
+
+                this.currentChat = chat;
+                MessagesController.getInstance().initialize();
+            }
+        });
     }
 
 }
