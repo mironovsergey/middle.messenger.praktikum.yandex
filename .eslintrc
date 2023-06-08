@@ -23,6 +23,8 @@
     "no-underscore-dangle": "off",
     "no-param-reassign": "off",
     "no-use-before-define": "off",
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "no-constructor-return": "off",
+    "no-alert": "off"
   }
 }

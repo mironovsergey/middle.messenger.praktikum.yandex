@@ -2,7 +2,7 @@ import type { TField } from '../../../../utils/types';
 import type { TBlockProps } from '../../../../services/block';
 import Block from '../../../../services/block';
 import FormControl from '../form-control';
-import { deepCompare } from '../../../../utils/helpers';
+import { deepCompare } from '../../../../utils';
 
 import template from './form-floating.hbs';
 

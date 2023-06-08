@@ -10,7 +10,7 @@ type TFormControl = TField & TBlockProps;
 
 export default class FormControl extends Block<TFormControl> {
 
-    constructor(props: TField) {
+    constructor(props: TFormControl) {
         super(props);
     }
 

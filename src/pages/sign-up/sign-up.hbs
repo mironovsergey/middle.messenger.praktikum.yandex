@@ -1,9 +1,21 @@
 <div class="layout">
     <div class="layout-wrap">
         <div class="layout-panel">
+            <div class="layout-head">
+                <h1 class="layout-title">
+                    {{title}}
+                </h1>
+            </div>
+
             <main class="layout-body">
-                {{{backdrop}}}
-                {{{modal}}}
+                <div class="layout-outer">
+                    <div class="layout-inner">
+                        {{{body}}}
+                    </div>
+                    <div class="layout-inner">
+                        {{{text}}}
+                    </div>
+                </div>
             </main>
         </div>
     </div>

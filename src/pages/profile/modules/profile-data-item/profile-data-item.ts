@@ -7,7 +7,7 @@ import './profile-data-item.scss';
 
 type TProfileDataItem = {
     title: string;
-    value: string;
+    value?: string;
 } & TBlockProps;
 
 export default class ProfileDataItem extends Block<TProfileDataItem> {

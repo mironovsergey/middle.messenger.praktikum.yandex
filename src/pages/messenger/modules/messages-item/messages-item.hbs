@@ -1,0 +1,14 @@
+<div class="messages-item {{#if self}}messages-item_self{{/if}}">
+    <div class="messages-item__outer">
+        <div class="messages-item__wrap">
+            {{#unless self}}<div class="messages-item__name">{{name}}</div>{{/unless}}
+            <div class="messages-item__inner">
+                {{#if content}}<div class="messages-item__text">{{{content}}}</div>{{/if}}
+            </div>
+            <div class="messages-item__meta">
+                {{#if status}}<div class="messages-item__status">{{{status}}}</div>{{/if}}
+                <div class="messages-item__time">{{time}}</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,6 +5,12 @@ export type TBlockProps = {
     events?: { [key: string]: (event: Event) => void };
 };
 
+export type TBlockClass<TProps extends TBlockProps = {}> = (
+    new (props?: TProps) => Block<TProps>
+);
+
+type TChilds = Record<string, Block | Array<Block>>;
+
 export default class Block<TProps extends TBlockProps = {}> {
 
     static EVENTS: Record<string, string> = {
@@ -15,7 +21,7 @@ export default class Block<TProps extends TBlockProps = {}> {
     };
 
     _props: TProps;
-    _childs: Record<string, Block | Array<Block>>;
+    _childs: TChilds;
     _id: string;
     _element: HTMLElement;
     _eventBus: EventBus;
@@ -87,9 +93,9 @@ export default class Block<TProps extends TBlockProps = {}> {
         });
     }
 
-    getChildsAndProps(childsAndProps: TProps) {
-        const childs: Record<string, Block | Array<Block>> = {};
-        const props: Record<string, unknown> = {};
+    getChildsAndProps(childsAndProps: Record<string, any>) {
+        const childs: TChilds = {};
+        const props: Record<string, any> = {};
 
         Object.entries(childsAndProps).forEach(([key, value]) => {
             if (
@@ -107,19 +113,17 @@ export default class Block<TProps extends TBlockProps = {}> {
 
     compile(template: (context: any, options?: any) => string, props?: TProps): DocumentFragment {
         if (typeof props === 'undefined') {
-            props = this._props;
+            props = this._props as TProps;
         }
 
-        const propsAndStubs = { ...props };
+        const propsAndStubs: Record<string, any> = { ...props };
 
         Object.entries(this._childs).forEach(([key, child]) => {
             if (Array.isArray(child)) {
-                // @ts-ignore
                 propsAndStubs[key] = child.map((item: Block) => (
                     `<div data-id="${item._id}"></div>`
                 ));
             } else {
-                // @ts-ignore
                 propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
             }
         });
@@ -187,7 +191,7 @@ export default class Block<TProps extends TBlockProps = {}> {
         return true;
     }
 
-    setProps(newProps: TProps) {
+    setProps(newProps: Record<string, any>) {
         if (!newProps) {
             return;
         }
@@ -201,6 +205,16 @@ export default class Block<TProps extends TBlockProps = {}> {
         if (Object.values(childs).length) {
             Object.assign(this._childs, childs);
         }
+
+        // Удаление ключей со значением undefined из _childs
+        Object.keys(newProps).forEach((key) => {
+            if (
+                Object.prototype.hasOwnProperty.call(this._childs, key)
+                && newProps[key] === undefined
+            ) {
+                delete this._childs[key];
+            }
+        });
 
         if (Object.values(props).length) {
             Object.assign(this._props, props);
@@ -225,6 +239,15 @@ export default class Block<TProps extends TBlockProps = {}> {
             set: (target, prop, value) => {
                 if (target[prop] !== value) {
                     target[prop] = value;
+                    this._setUpdate = true;
+                }
+
+                return true;
+            },
+
+            deleteProperty: (target, prop) => {
+                if (prop in target) {
+                    delete target[prop];
                     this._setUpdate = true;
                 }
 

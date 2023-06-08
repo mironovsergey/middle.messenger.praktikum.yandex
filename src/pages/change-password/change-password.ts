@@ -1,8 +1,12 @@
 import type { TBlockProps } from '../../services/block';
+import type { TPasswordRequest } from '../../utils/types';
+import { IHTMLFormElementWithValidator } from '../../services/validator';
+import UserController from '../../controllers/user-controller';
 import Block from '../../services/block';
 import Form from '../../modules/form';
 import Button from '../../components/button';
-import { getFormData } from '../../utils/helpers';
+import Router from '../../services/router';
+import { getFormData } from '../../utils';
 
 import template from './change-password.hbs';
 
@@ -23,7 +27,15 @@ export default class ChangePassword extends Block<TChangePassword> {
             backButton: new Button({
                 type: 'button',
                 mod: 'link',
-                text: `${iconBack}<span>Назад</span>`
+                text: `${iconBack}<span>Назад</span>`,
+                events: {
+                    click: (event: SubmitEvent) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+
+                        Router.getInstance().back();
+                    }
+                }
             }),
             body: new Form({
                 fields: [
@@ -49,14 +61,14 @@ export default class ChangePassword extends Block<TChangePassword> {
                     submit: (event: SubmitEvent) => {
                         event.preventDefault();
 
-                        const target = event.target as HTMLFormElement & {
-                            isValid?: () => boolean
-                        };
+                        const target = event.target as IHTMLFormElementWithValidator;
 
-                        // TODO: Реализовать иной способ проверки корректности
-                        // заполнения полей формы
                         if (typeof target.isValid === 'function' && target.isValid()) {
-                            console.log(getFormData(event.target as HTMLFormElement));
+                            const formData = getFormData(target as HTMLFormElement);
+
+                            UserController.password(formData as TPasswordRequest).finally(() => {
+                                target.reset();
+                            });
                         }
                     }
                 }

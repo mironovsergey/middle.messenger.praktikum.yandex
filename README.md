@@ -24,18 +24,12 @@
 
 [Макет в Figma](https://www.figma.com/file/rcpZBVPmaAXBgzTcSlguc1/social-network-chat?node-id=0%3A1&t=dt38BE58h3eGzOOG-1)
 
-## Ссылки на страницы
+## Ссылки
 
-- [Список чатов и лента переписки](https://lambent-hotteok-03f506.netlify.app/)
-- [Авторизация](https://lambent-hotteok-03f506.netlify.app/#sign-in)
-- [Регистрация](https://lambent-hotteok-03f506.netlify.app/#sign-up)
-- [Профиль](https://lambent-hotteok-03f506.netlify.app/#profile)
-- [Редактировать профиль](https://lambent-hotteok-03f506.netlify.app/#edit-profile)
-- [Изменить пароль](https://lambent-hotteok-03f506.netlify.app/#change-password)
-- [Ошибки 404](https://lambent-hotteok-03f506.netlify.app/#404)
-- [Ошибки 500](https://lambent-hotteok-03f506.netlify.app/#500)
+[Netlify](https://lambent-hotteok-03f506.netlify.app/)
 
 ## Pull requests
 
 - [Sprint 1](https://github.com/mironovsergey/middle.messenger.praktikum.yandex/pull/2)
 - [Sprint 2](https://github.com/mironovsergey/middle.messenger.praktikum.yandex/pull/3)
+- [Sprint 3](https://github.com/mironovsergey/middle.messenger.praktikum.yandex/pull/4)
