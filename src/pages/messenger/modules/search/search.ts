@@ -16,6 +16,8 @@ type TSearch = {
 
 export default class Search extends Block<TSearch> {
 
+    private inputTimer: number | null = null;
+
     constructor(props = {}) {
         super({
             ...props,
@@ -28,7 +30,14 @@ export default class Search extends Block<TSearch> {
                     input: (event: Event) => {
                         const { value } = event.target as HTMLInputElement;
 
-                        ChatsController.getChats(value ? { title: value } : undefined);
+                        if (this.inputTimer) {
+                            clearTimeout(this.inputTimer);
+                        }
+
+                        this.inputTimer = setTimeout(async () => {
+                            ChatsController.getChats(value ? { title: value } : undefined);
+                        }, 500);
+
                     }
                 }
             })
