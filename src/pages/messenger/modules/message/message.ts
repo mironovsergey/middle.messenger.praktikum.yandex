@@ -8,7 +8,7 @@ import template from './message.hbs';
 
 import './message.scss';
 
-import iconMessage from 'bundle-text:../../../../../static/images/icons/message.svg';
+import iconMessage from '../../../../images/icons/message.svg';
 
 type TMessage = {
     control: FormControl;

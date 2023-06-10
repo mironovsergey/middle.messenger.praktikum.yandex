@@ -22,7 +22,7 @@ export default class Dropdown extends Block<TDropdown> {
             ...props,
             items: items.map((item: TDropdownItem) => new DropdownItem(item)),
             events: {
-                click: (event: Event) => {
+                click: () => {
                     const { active } = this._props;
 
                     this.setProps({
@@ -69,7 +69,7 @@ export default class Dropdown extends Block<TDropdown> {
         return null;
     }
 
-    handleDocumentClick = (event: MouseEvent) => {
+    handleDocumentClick = () => {
         if (this._props.active) {
             this.setProps({
                 active: false

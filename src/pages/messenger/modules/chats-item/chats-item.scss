@@ -1,6 +1,6 @@
 @use "sass:math";
-@import "../../../../scss/functions";
-@import "../../../../scss/mixins";
+@import "../../../../styles/functions";
+@import "../../../../styles/mixins";
 
 .chats-item {
     &__outer {
@@ -116,7 +116,6 @@
     &_state_active &__body {
         .button {
             svg {
-
                 path,
                 circle {
                     stroke: var(--white);

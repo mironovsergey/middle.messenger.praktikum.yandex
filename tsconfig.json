@@ -1,8 +1,7 @@
 {
   "include": [
-    "src",
     "declaration.d.ts",
-    "src/index.ts"
+    "src"
   ],
   "exclude": [
     "node_modules"
@@ -10,13 +9,13 @@
   "compilerOptions": {
     "module": "CommonJS",
     "target": "ES6",
-    "baseUrl": "./src",
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
     "strictNullChecks": true,
     "declaration": true,
+    "esModuleInterop": true,
     "lib": ["DOM", "ESNext", "DOM.Iterable"]
   }
 }

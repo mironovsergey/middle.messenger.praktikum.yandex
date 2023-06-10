@@ -10,7 +10,7 @@ import { getFormData } from '../../utils';
 
 import template from './change-password.hbs';
 
-import iconBack from 'bundle-text:../../../static/images/icons/back.svg';
+import iconBack from '../../images/icons/back.svg';
 
 type TChangePassword = {
     title: string;

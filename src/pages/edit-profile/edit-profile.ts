@@ -6,7 +6,7 @@ import Router from '../../services/router';
 
 import template from './edit-profile.hbs';
 
-import iconBack from 'bundle-text:../../../static/images/icons/back.svg';
+import iconBack from '../../images/icons/back.svg';
 
 type TEditProfile = {
     title: string;

@@ -8,7 +8,7 @@ import { ProfileData } from './modules/profile-data';
 
 import template from './profile.hbs';
 
-import iconBack from 'bundle-text:../../../static/images/icons/back.svg';
+import iconBack from '../../images/icons/back.svg';
 
 type TProfile = {
     title: string;

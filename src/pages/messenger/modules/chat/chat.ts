@@ -7,12 +7,12 @@ import template from './chat.hbs';
 
 import './chat.scss';
 
+import noimage from '../../../../images/noimage.jpg';
+
 export default class Chat extends Block<TChat & TBlockProps> {
 
     constructor({ avatar, ...props }: TChat) {
-        avatar = avatar
-            ? `${API_URL}/resources${avatar}`
-            : '/images/noimage.jpg';
+        avatar = avatar ? `${API_URL}/resources${avatar}` : noimage;
 
         super({
             ...props,

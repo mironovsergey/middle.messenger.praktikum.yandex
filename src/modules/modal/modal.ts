@@ -6,7 +6,7 @@ import template from './modal.hbs';
 
 import './modal.scss';
 
-import iconClose from 'bundle-text:../../../static/images/icons/close.svg';
+import iconClose from '../../images/icons/close.svg';
 
 type TModal = {
     title: string;

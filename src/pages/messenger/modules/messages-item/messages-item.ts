@@ -7,7 +7,7 @@ import template from './messages-item.hbs';
 
 import './messages-item.scss';
 
-import iconCheck from 'bundle-text:../../../../../static/images/icons/check.svg';
+import iconCheck from '../../../../images/icons/check.svg';
 
 type TMessagesItem = {
     time: string;
