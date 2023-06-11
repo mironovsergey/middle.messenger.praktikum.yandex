@@ -10,7 +10,7 @@
 
 Запуск в режиме разработки
 
-    npm run dev
+    npm run serve
 
 Сборка проекта для продакшена
 
@@ -19,6 +19,22 @@
 Запуск сервера
 
     npm run start
+
+Сборка образа Docker
+
+    docker build -t middle-messenger-praktikum-yandex .
+
+Запуск контейнера Docker
+
+    docker run -p 3000:3000 middle-messenger-praktikum-yandex
+
+Получение списка запущенных контейнеров Docker
+
+    docker ps
+
+Остановка контейнера Docker
+
+    docker stop <CONTAINER ID>
 
 ## Дизайн-макет
 
