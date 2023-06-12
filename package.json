@@ -4,11 +4,26 @@
   "scripts": {
     "start": "npm run build && node server.js",
     "test": "mocha --require ts-node/register 'src/**/*.spec.ts'",
+    "lint-staged": "lint-staged",
+    "eslint": "eslint --ext .js,.ts src",
+    "stylelint": "stylelint src/**/*.scss",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "serve": "webpack serve"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,scss}": [
+      "npm run eslint",
+      "npm run stylelint",
+      "git add"
+    ]
   },
   "engines": {
     "node": ">= 12.0.0"
@@ -35,7 +50,9 @@
     "eslint-plugin-import": "^2.27.5",
     "handlebars-loader": "^1.7.3",
     "html-webpack-plugin": "^5.5.2",
+    "husky": "^8.0.3",
     "jsdom": "^22.1.0",
+    "lint-staged": "^13.2.2",
     "mocha": "^10.2.0",
     "postcss": "^8.4.24",
     "postcss-loader": "^7.3.3",
