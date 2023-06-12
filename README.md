@@ -1,10 +1,10 @@
 # Messenger
 
+[![Tests](https://github.com/mironovsergey/middle.messenger.praktikum.yandex/actions/workflows/tests.yml/badge.svg)](https://github.com/mironovsergey/middle.messenger.praktikum.yandex/actions/workflows/tests.yml)
+
 Мессенджер - это современное приложение чата, разработанное для обмена
 сообщениями и создания групповых чатов. Он предоставляет удобный интерфейс для
 взаимодействия пользователей, обеспечивая быструю и надежную коммуникацию.
-
-Обучающий проект в рамках курса «Мидл фронтенд-разработчик» Яндекс.Практикум.
 
 [Демо-версия проекта](https://lambent-hotteok-03f506.netlify.app/)
 
@@ -83,3 +83,4 @@
 - [Sprint 1](https://github.com/mironovsergey/middle.messenger.praktikum.yandex/pull/2)
 - [Sprint 2](https://github.com/mironovsergey/middle.messenger.praktikum.yandex/pull/3)
 - [Sprint 3](https://github.com/mironovsergey/middle.messenger.praktikum.yandex/pull/4)
+- [Sprint 4](https://github.com/mironovsergey/middle.messenger.praktikum.yandex/pull/5)
