@@ -25,6 +25,14 @@
     "no-use-before-define": "off",
     "no-nested-ternary": "off",
     "no-constructor-return": "off",
-    "no-alert": "off"
+    "no-alert": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.spec.ts"
+        ]
+      }
+    ]
   }
 }

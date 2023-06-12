@@ -20,6 +20,10 @@
 
     npm run start
 
+Запуск тестов
+
+    npm run test
+
 Сборка образа Docker
 
     docker build -t middle-messenger-praktikum-yandex .
