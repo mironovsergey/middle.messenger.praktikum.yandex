@@ -4,15 +4,15 @@ import ProfileSettings from './profile-settings';
 import ProfileImage from '../profile-image';
 import { connect } from '../../../../services/store';
 
+import nobody from '../../../../images/nobody.jpg';
+
 const withUser = connect(({ user }: { user?: TUser }) => {
     if (!user) {
         return {};
     }
 
     const name = user.first_name;
-    const avatar = user.avatar
-        ? `${API_URL}/resources${user.avatar}`
-        : '/images/noimage.jpg';
+    const avatar = user.avatar ? `${API_URL}/resources${user.avatar}` : nobody;
 
     return {
         profileName: name,

@@ -1,6 +1,6 @@
 @use "sass:math";
-@import "../../scss/functions";
-@import "../../scss/mixins";
+@import "../../styles/functions";
+@import "../../styles/mixins";
 
 .dropdown {
     position: relative;
@@ -85,7 +85,7 @@
     }
 
     &__icon {
-        img {
+        svg {
             display: block;
         }
     }

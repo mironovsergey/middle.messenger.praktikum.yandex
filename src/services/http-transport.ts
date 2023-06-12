@@ -1,21 +1,21 @@
 import type { Indexed } from '../utils/types';
 import { queryStringify } from '../utils';
 
-enum METHODS {
+export enum METHODS {
     GET = 'GET',
     PUT = 'PUT',
     POST = 'POST',
     DELETE = 'DELETE'
 }
 
-type TOptions = {
+export type TOptions = {
     headers?: Indexed<string>;
     data?: Indexed | XMLHttpRequestBodyInit;
     method?: METHODS;
     timeout?: number;
 };
 
-type TMethod = (url: string, options?: TOptions) => Promise<XMLHttpRequest>;
+export type TMethod = (url: string, options?: TOptions) => Promise<XMLHttpRequest>;
 
 export default class HTTPTransport {
 

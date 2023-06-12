@@ -57,7 +57,7 @@ export default class WSTransport {
             type: 'ping'
         };
 
-        this.pingInterval = setInterval(() => {
+        this.pingInterval = window.setInterval(() => {
             this.socket.send(JSON.stringify(message));
         }, this.ping);
     }

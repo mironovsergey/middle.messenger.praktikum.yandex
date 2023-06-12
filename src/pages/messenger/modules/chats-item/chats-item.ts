@@ -11,7 +11,8 @@ import template from './chats-item.hbs';
 
 import './chats-item.scss';
 
-import iconXmark from 'bundle-text:../../../../../static/images/icons/xmark.svg';
+import iconXmark from '../../../../images/icons/xmark.svg';
+import noimage from '../../../../images/noimage.jpg';
 
 type TChatsItem = {
     avatar: string;
@@ -54,9 +55,7 @@ export default class ChatsItem extends Block<TChatsItem> {
         }
 
         // Аватар
-        const avatar = props.avatar
-            ? `${API_URL}/resources${props.avatar}`
-            : '/images/noimage.jpg';
+        const avatar = props.avatar ? `${API_URL}/resources${props.avatar}` : noimage;
 
         super({
             ...props,

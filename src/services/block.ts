@@ -187,6 +187,7 @@ export default class Block<TProps extends TBlockProps = {}> {
         }
     }
 
+    // @ts-ignore
     componentDidUpdate(oldProps: TProps, newProps: TProps) {
         return true;
     }

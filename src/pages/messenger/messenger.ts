@@ -19,8 +19,12 @@ import Router from '../../services/router';
 
 import template from './messenger.hbs';
 
-import iconBars from 'bundle-text:../../../static/images/icons/bars.svg';
-import iconDots from 'bundle-text:../../../static/images/icons/dots.svg';
+import iconBars from '../../images/icons/bars.svg';
+import iconDots from '../../images/icons/dots.svg';
+import iconPlus from '../../images/icons/plus.svg';
+import iconXmark from '../../images/icons/xmark.svg';
+import iconUser from '../../images/icons/user.svg';
+import iconExit from '../../images/icons/exit.svg';
 
 type TMessenger = {
     search?: Search;
@@ -170,7 +174,7 @@ export default class Messenger extends Block<TMessenger> {
                     right: true,
                     items: [
                         {
-                            icon: '/images/icons/plus.svg',
+                            icon: iconPlus,
                             text: 'Добавить пользователя',
                             events: {
                                 click: (event: Event) => {
@@ -188,7 +192,7 @@ export default class Messenger extends Block<TMessenger> {
                             }
                         },
                         {
-                            icon: '/images/icons/xmark.svg',
+                            icon: iconXmark,
                             text: 'Удалить пользователя',
                             events: {
                                 click: (event: Event) => {
@@ -214,7 +218,7 @@ export default class Messenger extends Block<TMessenger> {
                 icon: iconBars,
                 items: [
                     {
-                        icon: '/images/icons/user.svg',
+                        icon: iconUser,
                         text: 'Профиль',
                         events: {
                             click: (event: SubmitEvent) => {
@@ -226,7 +230,7 @@ export default class Messenger extends Block<TMessenger> {
                         }
                     },
                     {
-                        icon: '/images/icons/exit.svg',
+                        icon: iconExit,
                         text: 'Выйти',
                         events: {
                             click: (event: SubmitEvent) => {
@@ -244,7 +248,7 @@ export default class Messenger extends Block<TMessenger> {
                 right: true,
                 items: [
                     {
-                        icon: '/images/icons/plus.svg',
+                        icon: iconPlus,
                         text: 'Создать чат',
                         events: {
                             click: (event: Event) => {

@@ -7,7 +7,7 @@ import template from './search.hbs';
 
 import './search.scss';
 
-import iconSearch from 'bundle-text:../../../../../static/images/icons/search.svg';
+import iconSearch from '../../../../images/icons/search.svg';
 
 type TSearch = {
     iconSearch: string;
@@ -34,7 +34,7 @@ export default class Search extends Block<TSearch> {
                             clearTimeout(this.inputTimer);
                         }
 
-                        this.inputTimer = setTimeout(async () => {
+                        this.inputTimer = window.setTimeout(async () => {
                             ChatsController.getChats(value ? { title: value } : undefined);
                         }, 500);
 
